@@ -15,6 +15,18 @@ Input Price:
 <input type="number" @bind-value="@Product.Price" @bind-value:event="oninput" />
 <br />
 
+<h3>IsActive IF condition binding</h3>
+IsActive: @Product.IsActive 
+<br />
+The product is: @(Product.IsActive ? "Active" : "InActive") 
+<br />
+Is Active (Using bind):
+<input type="checkbox" @bind="@Product.IsActive" />
+<br />
+Is Active (Using bind-value):
+<input type="checkbox" @bind-value="@Product.IsActive" checked="@(@Product.IsActive?"checked":null)" />
+<br />
+
 @code {
     Models.Product Product = new()
     {
