@@ -6,11 +6,21 @@ Product Name: @Product.Name
 IsActive: @Product.IsActive
 <br />
 
+<h3>Product - Two way data binding</h3>
+Price: @Product.Price 
+<br />
+Input Price: <input type="number" @bind="@Product.Price" @bind:event="oninput"/> 
+<br />
+Input Price:
+<input type="number" @bind-value="@Product.Price" @bind-value:event="oninput" />
+<br />
+
 @code {
     Models.Product Product = new()
     {
         Id=1,
         Name="Product 1",
+        Price=5,
         IsActive=true
     };
 }
