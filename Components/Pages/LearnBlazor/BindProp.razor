@@ -27,12 +27,39 @@ Is Active (Using bind-value):
 <input type="checkbox" @bind-value="@Product.IsActive" checked="@(@Product.IsActive?"checked":null)" />
 <br />
 
+<h3>Dropdown</h3>
+<select @bind="selectedProp">
+    @foreach (var prop in Product.ProductProperties)
+    {
+        <option value="@prop.Key">@prop.Key</option>
+    }
+</select>
+
+<br />
+Selected Prop Key: @selectedProp
+
+@* Hide value of key if null. Display value of key if not null *@
+@if (!string.IsNullOrEmpty(selectedProp))
+{
+    <p>Selected Prop Value : @Product.ProductProperties.FirstOrDefault(u => u.Key == selectedProp).Value</p>
+}
+
+
 @code {
+    private string selectedProp = "";
+
     Models.Product Product = new()
     {
         Id=1,
         Name="Product 1",
         Price=5,
-        IsActive=true
+        IsActive=true,
+        ProductProperties= new List<Models.Product_Prop>()
+        {
+            new Models.Product_Prop{ Id =1 , Key="Color", Value="Red"},
+            new Models.Product_Prop{ Id =2 , Key="Size", Value="20oz"},
+            new Models.Product_Prop{ Id =3 , Key="Flavor", Value="Rose"},
+
+        }
     };
 }
