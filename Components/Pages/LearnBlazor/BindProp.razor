@@ -1,64 +1,75 @@
 ﻿@page "/learnBlazor/bindprop"
 
-<h3>Product - One way data binding</h3>
-Product Name: @Product.Name
-<br />
-IsActive: @Product.IsActive
-<br />
+<div class="row">
+    <div class="col-6 border p-3">
+        <h3 class="text-primary">Product Playground</h3>
+        <hr />
 
-<h3>Product - Two way data binding</h3>
-Price: @Product.Price 
-<br />
-Input Price: <input type="number" @bind="@Product.Price" @bind:event="oninput"/> 
-<br />
-Input Price:
-<input type="number" @bind-value="@Product.Price" @bind-value:event="oninput" />
-<br />
+        <h3>Product - One way data binding</h3>
+        Product Name: @Product.Name
+        <br />
+        IsActive: @Product.IsActive
+        <br />
 
-<h3>IsActive IF condition binding</h3>
-IsActive: @Product.IsActive 
-<br />
-The product is: @(Product.IsActive ? "Active" : "InActive") 
-<br />
-Is Active (Using bind):
-<input type="checkbox" @bind="@Product.IsActive" />
-<br />
-Is Active (Using bind-value):
-<input type="checkbox" @bind-value="@Product.IsActive" checked="@(@Product.IsActive?"checked":null)" />
-<br />
+        <h3>Product - Two way data binding</h3>
+        Price: @Product.Price 
+        <br />
+        Input Price: <input type="number" @bind="@Product.Price" @bind:event="oninput"/> 
+        <br />
+        Input Price:
+        <input type="number" @bind-value="@Product.Price" @bind-value:event="oninput" />
+        <br />
 
-<h3>Dropdown</h3>
-<select @bind="selectedProp">
-    @foreach (var prop in Product.ProductProperties)
-    {
-        <option value="@prop.Key">@prop.Key</option>
-    }
-</select>
+        <h3>IsActive IF condition binding</h3>
+        IsActive: @Product.IsActive 
+        <br />
+        The product is: @(Product.IsActive ? "Active" : "InActive") 
+        <br />
+        Is Active (Using bind):
+        <input type="checkbox" @bind="@Product.IsActive" />
+        <br />
+        Is Active (Using bind-value):
+        <input type="checkbox" @bind-value="@Product.IsActive" checked="@(@Product.IsActive?"checked":null)" />
+        <br />
 
-<br />
-Selected Prop Key: @selectedProp
+        <h3>Dropdown</h3>
+        <select @bind="selectedProp">
+            @foreach (var prop in Product.ProductProperties)
+            {
+                <option value="@prop.Key">@prop.Key</option>
+            }
+        </select>
 
-@* Hide value of key if null. Display value of key if not null *@
-@if (!string.IsNullOrEmpty(selectedProp))
-{
-    <p>Selected Prop Value : @Product.ProductProperties.FirstOrDefault(u => u.Key == selectedProp).Value</p>
-}
+        <br />
+        Selected Prop Key: @selectedProp
 
+        @* Hide value of key if null. Display value of key if not null *@
+        @if (!string.IsNullOrEmpty(selectedProp))
+        {
+            <p>Selected Prop Value : @Product.ProductProperties.FirstOrDefault(u => u.Key == selectedProp).Value</p>
+        }
+    </div>
+
+    <div class="col-6 border p-3">
+        <h3 class="text-primary">Product Summary</h3>
+        <hr />
+    </div>
+</div>
 
 @code {
     private string selectedProp = "";
 
-    Models.Product Product = new()
+    Product Product = new()
     {
         Id=1,
         Name="Product 1",
         Price=5,
         IsActive=true,
-        ProductProperties= new List<Models.Product_Prop>()
+        ProductProperties= new List<Product_Prop>()
         {
-            new Models.Product_Prop{ Id =1 , Key="Color", Value="Red"},
-            new Models.Product_Prop{ Id =2 , Key="Size", Value="20oz"},
-            new Models.Product_Prop{ Id =3 , Key="Flavor", Value="Rose"},
+            new Product_Prop{ Id =1 , Key="Color", Value="Red"},
+            new Product_Prop{ Id =2 , Key="Size", Value="20oz"},
+            new Product_Prop{ Id =3 , Key="Flavor", Value="Rose"},
 
         }
     };
