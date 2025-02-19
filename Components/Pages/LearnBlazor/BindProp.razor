@@ -75,8 +75,16 @@
                     </tr>
                 }
             </tbody>
-        </table>  
+        </table> 
+        <br />
+        <h2>Product Summary</h2>
+        @foreach (var prod in ProductList)
+        {
+            <p>@prod.Name is @(prod.IsActive?"Active":"Inactive"). The price is $@prod.Price</p>
+        }
     </div>
+    
+
 </div>
 
 @code {
