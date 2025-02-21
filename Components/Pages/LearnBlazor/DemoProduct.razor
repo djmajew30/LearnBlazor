@@ -22,12 +22,21 @@
         </div>
     }
     </div>
+    <div class="row pt-4">
+        <input type="button" class="btn btn-success" style="width:100px" value="Counter" @onclick="IncrementCount" />
+        Counter: @Count <br />
+    </div>
 </div>
 
 
 
 @code {
-    int Counter = 0;
+    public int Count { get; set; } = 0;
+
+    private void IncrementCount()
+    {
+        Count++;
+    }            
 
     //working with a list of products
     List<Product> ProductList = new();
