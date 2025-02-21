@@ -1,0 +1,9 @@
+﻿Error with DbContext
+
+DbContext needs some update as we progress with the course. If you ever encounter error stating "A second operation was started on this context instance before a previous operation completed"
+
+Please checkout the video 186 - Db Context Lifetime for resolution.
+
+
+Sample Exception is shown in the picture below.
+

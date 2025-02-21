@@ -18,7 +18,7 @@
                     <p>@prop.Key - @prop.Value</p>
                 }
             }
-            <input type="button" class="btn btn-danger" style="width:100px" value="Delete" />
+                <input type="button" class="btn btn-danger" style="width:100px" value="Delete" @onclick="()=>DeleteProduct(@prod.Id)" />
         </div>
     }
     </div>
@@ -38,6 +38,15 @@
         Count+= counter;
     }            
 
+    private void DeleteProduct(int productId)
+    {
+        // Find the product with the matching ID and remove it
+        var productToRemove = ProductList.FirstOrDefault(p => p.Id == productId);
+        if (productToRemove != null)
+        {
+            ProductList.Remove(productToRemove);
+        }
+    }
     //working with a list of products
     List<Product> ProductList = new();
 
