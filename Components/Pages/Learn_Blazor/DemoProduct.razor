@@ -1,4 +1,5 @@
 ﻿@page "/learnBlazor/demoproduct"
+
 <h2 class="text-primary">DemoProduct</h2>
 
 <div class=" p-2 mt-2">
@@ -9,7 +10,7 @@
         <div class="bg-light border col-6 pt-2">
             <h5>Product - @prod.Id</h5>
             <p>Name - @prod.Name</p>
-            <p>Show Properties: <input type="checkbox" @bind="@prod.IsActive"/></p>
+            <p>Show Properties: <input type="checkbox" @bind="@prod.IsActive" /></p>
 
             @if (@prod.IsActive)
             {
@@ -18,7 +19,8 @@
                     <p>@prop.Key - @prop.Value</p>
                 }
             }
-                <input type="button" class="btn btn-danger" style="width:100px" value="Delete" @onclick="()=>DeleteProduct(prod.Id)" />
+            @* <input type="button" class="btn btn-danger" style="width:100px" value="Delete" @onclick="()=>DeleteProduct(prod.Id)" /> *@
+            <_DeleteButtonComponent></_DeleteButtonComponent>
         </div>
     }
     </div>
@@ -38,15 +40,16 @@
         Count+= counter;
     }            
 
-    private void DeleteProduct(int productId)
-    {
-        // Find the product with the matching ID and remove it
-        var productToRemove = ProductList.FirstOrDefault(p => p.Id == productId);
-        if (productToRemove != null)
-        {
-            ProductList.Remove(productToRemove);
-        }
-    }
+    // private void DeleteProduct(int productId)
+    // {
+    //     // Find the product with the matching ID and remove it
+    //     var productToRemove = ProductList.FirstOrDefault(p => p.Id == productId);
+    //     if (productToRemove != null)
+    //     {
+    //         ProductList.Remove(productToRemove);
+    //     }
+    // }
+
     //working with a list of products
     List<Product> ProductList = new();
 
