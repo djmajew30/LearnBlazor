@@ -20,7 +20,7 @@
                 }
             }
             @* <input type="button" class="btn btn-danger" style="width:100px" value="Delete" @onclick="()=>DeleteProduct(prod.Id)" /> *@
-            <_DeleteButtonComponent></_DeleteButtonComponent>
+            <_DeleteButtonComponent ProductId="@prod.Id" ProductName="@prod.Name"></_DeleteButtonComponent>
         </div>
     }
     </div>
