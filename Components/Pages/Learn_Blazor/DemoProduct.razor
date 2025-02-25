@@ -7,38 +7,27 @@
 <div class="row">
     @foreach (var prod in ProductList)
     {
-        <div class="bg-light border col-6 pt-2">
-            <h5>Product - @prod.Id</h5>
-            <p>Name - @prod.Name</p>
-            <p>Show Properties: <input type="checkbox" @bind="@prod.IsActive" /></p>
-
-            @if (@prod.IsActive)
-            {
-                @foreach (var prop in prod.ProductProperties)
-                {
-                    <p>@prop.Key - @prop.Value</p>
-                }
-            }
-            @* <input type="button" class="btn btn-danger" style="width:100px" value="Delete" @onclick="()=>DeleteProduct(prod.Id)" /> *@
-            <_DeleteButtonComponent ProductId="@prod.Id" ProductName="@prod.Name"></_DeleteButtonComponent>
-        </div>
+        <_IndividualProduct Product="prod"></_IndividualProduct>
+        
     }
     </div>
-    <div class="row pt-4">
+    @*
+        Counter:
+        <div class="row pt-4">
         <input type="button" class="btn btn-success" style="width:100px" value="Counter" @onclick="()=>IncrementCount(5)" />
         Counter: @Count <br />
-    </div>
+    </div>*@
 </div>
 
 
 
 @code {
-    public int Count { get; set; } = 0;
+    //public int Count { get; set; } = 0;
 
-    private void IncrementCount(int counter= 1)
-    {
-        Count+= counter;
-    }            
+    //private void IncrementCount(int counter= 1)
+    //{
+    //    Count+= counter;
+    //}            
 
     // private void DeleteProduct(int productId)
     // {
@@ -57,31 +46,31 @@
     protected override void OnInitialized()
     {
         ProductList.Add(new()
-            {
-                Id = 1,
-                Name = "Midnight Blaze",
-                IsActive = false,
-                Price = 5.99,
-                ProductProperties = new List<Product_Prop>()
+        {
+            Id = 1,
+            Name = "Midnight Blaze",
+            IsActive = false,
+            Price = 5.99,
+            ProductProperties = new List<Product_Prop>()
                 {
                     new Product_Prop { Id = 1, Key = "Flavor", Value = "Rose"},
                     new Product_Prop { Id = 2, Key = "Size", Value = "20oz"},
                     new Product_Prop { Id = 3, Key = "Color", Value="Purple" }
                 }
-            });
+        });
 
         ProductList.Add(new()
-            {
-                Id = 2,
-                Name = "Blossom Lily",
-                IsActive = true,
-                Price = 10.59,
-                ProductProperties = new List<Product_Prop>()
+        {
+            Id = 2,
+            Name = "Blossom Lily",
+            IsActive = true,
+            Price = 10.59,
+            ProductProperties = new List<Product_Prop>()
                 {
                     new Product_Prop { Id = 1, Key = "Flavor", Value = "Lily" },
                     new Product_Prop { Id = 2, Key = "Size", Value = "18oz" },
                     new Product_Prop {Id = 3,Key = "Color",Value = "White"}
                 }
-            });
+        });
     }
 }
