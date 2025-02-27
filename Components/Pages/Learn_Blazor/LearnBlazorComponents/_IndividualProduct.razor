@@ -1,6 +1,8 @@
 ﻿<div class="bg-light border col-6 pt-2">
     <h5 class="text-secondary">Product - @Product.Id</h5>
-    <input type="checkbox" /> Add to Favorites <br /><br />
+
+    <input type="checkbox" @onchange="FavoriteUpdated"/> Add to Favorites <br /><br />
+
     <p>Name - @Product.Name</p>
     <p>Show Properties: <input type="checkbox" @bind="@Product.IsActive" /></p>
 
@@ -18,4 +20,15 @@
 @code {
     [Parameter]
     public Product Product { get; set; }
+
+    //event callback
+    [Parameter]
+    public EventCallback<bool> OnFavoriteUpdated { get; set; }
+
+    private async Task FavoriteUpdated(ChangeEventArgs args)
+    {
+        //check if selected or unchecked. OnFavoriteUpdated from demoproduct.razor
+        await OnFavoriteUpdated.InvokeAsync((bool)(args.Value ?? false));
+    }
+
 }
