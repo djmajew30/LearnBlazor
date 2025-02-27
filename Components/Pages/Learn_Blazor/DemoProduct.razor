@@ -1,7 +1,7 @@
 ﻿@page "/learnBlazor/demoproduct"
 
 <h2 class="text-primary">DemoProduct</h2>
-
+<p>Favorite Count: @FavoriteCount</p>
 <div class=" p-2 mt-2">
 
 <div class="row">
@@ -72,5 +72,20 @@
                     new Product_Prop {Id = 3,Key = "Color",Value = "White"}
                 }
         });
+    }
+
+    //favorites counter
+    public int FavoriteCount { get; set; } = 0;
+
+    protected void FavoriteCountChange(bool isSelected)
+    {
+        if (isSelected)
+        {
+            FavoriteCount++;
+        }
+        else
+        {
+            FavoriteCount--;
+        }
     }
 }

@@ -1,5 +1,6 @@
 ﻿<div class="bg-light border col-6 pt-2">
-    <h5>Product - @Product.Id</h5>
+    <h5 class="text-secondary">Product - @Product.Id</h5>
+    <input type="checkbox" /> Add to Favorites <br /><br />
     <p>Name - @Product.Name</p>
     <p>Show Properties: <input type="checkbox" @bind="@Product.IsActive" /></p>
 
@@ -10,7 +11,6 @@
             <p>@prop.Key - @prop.Value</p>
         }
     }
-    @* <input type="button" class="btn btn-danger" style="width:100px" value="Delete" @onclick="()=>DeleteProduct(prod.Id)" /> *@
     <_DeleteButtonComponent ProductId="@Product.Id" ProductName="@Product.Name"></_DeleteButtonComponent>
 
 </div>
